@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A.E.G.I.S. Star Core</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      overflow: hidden;
+    }
+    #scene {
+      position: fixed;
+      inset: 0;
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      background: #000000;
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.143.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.143.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+    import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+    import { GammaCorrectionShader } from 'three/addons/shaders/GammaCorrectionShader.js';
+
+    // Refined, calm star palette: pure black background, crisp stardust separation
+    const CONFIG = {
+      bgColor: '#000000',
+      coreColor: '#05050a',
+      midColor: '#d8d8e8',
+      rimColor: '#6a5ae0',
+      atmoColor: '#8a7af0',
+      atmoCount: 280,
+      atmoSize: 14,
+      atmoSpeed: 0.6,
+      opacity: 1.4,
+      pointSize: 42,       // Smaller, fine stardust points so particles aren't blurred together
+      brightness: 0.75,     // Calm, reduced brightness to eliminate eye strain
+      spin: 0.12,          // Gentle, elegant rotation
+      repelRadius: 1.3,     // Noticeable interactive cursor carved void
+      repelStrength: 1.5,
+      parallax: 0.35,
+    };
+
+    function hexToVec3(hex) {
+      const n = parseInt(hex.slice(1), 16);
+      return new THREE.Vector3(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255);
+    }
+
+    const canvas = document.getElementById('scene');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x000000, 1.0);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
+    scene.fog = new THREE.FogExp2(0x000000, 0.035);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 80);
+    camera.position.set(0, 0, 7.2);
+    scene.add(camera);
+
+    const composer = new EffectComposer(renderer);
+    const renderPass = new RenderPass(scene, camera);
+    composer.addPass(renderPass);
+
+    // Subtle, gentle bloom: prevents blown-out white blobs
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      0.28,  // Subdued bloom strength
+      0.3,   // Radius
+      0.88   // High threshold: only very brightest highlights bloom softly
+    );
+    composer.addPass(bloomPass);
+
+    const gammaPass = new ShaderPass(GammaCorrectionShader);
+    composer.addPass(gammaPass);
+
+    // 45,000 Particle Storm Sphere with clear spacing
+    const count = 45000;
+    const radius = 2.4;
+    const positions = new Float32Array(count * 3);
+    const scales = new Float32Array(count);
+    const noises = new Float32Array(count);
+    const radialPush = new Float32Array(count);
+    const mixv = new Float32Array(count);
+
+    for (let i = 0; i < count; i++) {
+      const i3 = i * 3;
+      let u, v, s;
+      do {
+        u = Math.random() * 2 - 1;
+        v = Math.random() * 2 - 1;
+        s = u * u + v * v;
+      } while (s >= 1 || s === 0);
+      const factor = 2 * Math.sqrt(1 - s);
+      const dx = u * factor;
+      const dy = v * factor;
+      const dz = 1 - 2 * s;
+
+      const rN = Math.pow(Math.random(), 0.38);
+      const r = radius * (0.52 + rN * 0.48);
+      positions[i3] = dx * r;
+      positions[i3 + 1] = dy * r;
+      positions[i3 + 2] = dz * r;
+
+      mixv[i] = rN;
+      scales[i] = 0.35 + Math.random() * 0.65;
+      noises[i] = Math.random();
+      radialPush[i] = 0.4 + rN * 0.9;
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('aScale', new THREE.BufferAttribute(scales, 1));
+    geometry.setAttribute('aNoise', new THREE.BufferAttribute(noises, 1));
+    geometry.setAttribute('aRadialPush', new THREE.BufferAttribute(radialPush, 1));
+    geometry.setAttribute('aMix', new THREE.BufferAttribute(mixv, 1));
+
+    const uniforms = {
+      uTime: { value: 0 },
+      uSize: { value: CONFIG.pointSize },
+      uOpacity: { value: 0 },
+      uBrightness: { value: CONFIG.brightness },
+      uRepelPos: { value: new THREE.Vector3(9999, 9999, 9999) },
+      uRepelRadius: { value: CONFIG.repelRadius },
+      uRepelStrength: { value: CONFIG.repelStrength },
+      uCoreColor: { value: hexToVec3(CONFIG.coreColor) },
+      uMidColor: { value: hexToVec3(CONFIG.midColor) },
+      uRimColor: { value: hexToVec3(CONFIG.rimColor) },
+      uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+    };
+
+    // Vertex shader calculates repel directly in WORLD SPACE so cursor repulsion is 100% accurate and never mirrored
+    const material = new THREE.ShaderMaterial({
+      uniforms,
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      vertexShader: `
+        uniform float uTime;
+        uniform float uSize;
+        uniform vec3  uRepelPos;
+        uniform float uRepelRadius;
+        uniform float uRepelStrength;
+        uniform float uPixelRatio;
+
+        attribute float aScale;
+        attribute float aNoise;
+        attribute float aRadialPush;
+        attribute float aMix;
+
+        varying float vMix;
+
+        void main() {
+          vMix = aMix;
+          float pump = sin(uTime * 1.4 + aNoise * 6.28318) * 0.045;
+          vec3 dir = normalize(position);
+          vec3 localPos = position + dir * pump * aRadialPush;
+
+          // Convert to world space
+          vec4 worldPos = modelMatrix * vec4(localPos, 1.0);
+
+          // World space cursor repulsion (reacts on the exact cursor side)
+          vec3 toRepel = worldPos.xyz - uRepelPos;
+          float d = length(toRepel);
+          if (d < uRepelRadius && d > 0.001) {
+            worldPos.xyz += normalize(toRepel) * (uRepelRadius - d) * uRepelStrength;
+          }
+
+          vec4 mv = viewMatrix * worldPos;
+          gl_PointSize = uSize * aScale * uPixelRatio * (1.0 / -mv.z);
+          gl_Position = projectionMatrix * mv;
+        }
+      `,
+      fragmentShader: `
+        uniform float uOpacity;
+        uniform float uBrightness;
+        uniform vec3  uCoreColor;
+        uniform vec3  uMidColor;
+        uniform vec3  uRimColor;
+
+        varying float vMix;
+
+        void main() {
+          float d = length(gl_PointCoord - 0.5) * 2.0;
+          if (d > 1.0) discard;
+          float falloff = 1.0 - d * d;
+          vec3 col;
+          if (vMix < 0.45) {
+            col = mix(uCoreColor, uMidColor, vMix / 0.45);
+          } else {
+            col = mix(uMidColor, uRimColor, (vMix - 0.45) / 0.55);
+          }
+          col *= uBrightness;
+          gl_FragColor = vec4(col, falloff * uOpacity);
+        }
+      `
+    });
+
+    const points = new THREE.Points(geometry, material);
+    const group = new THREE.Group();
+    group.add(points);
+    scene.add(group);
+
+    // Ambient Stardust Motes
+    const atmoGeo = new THREE.BufferGeometry();
+    const atmoPos = new Float32Array(CONFIG.atmoCount * 3);
+    const atmoSpeed = new Float32Array(CONFIG.atmoCount);
+    for (let i = 0; i < CONFIG.atmoCount; i++) {
+      atmoPos[i * 3] = (Math.random() - 0.5) * 14;
+      atmoPos[i * 3 + 1] = (Math.random() - 0.5) * 14;
+      atmoPos[i * 3 + 2] = (Math.random() - 0.5) * 14;
+      atmoSpeed[i] = 0.3 + Math.random() * 0.7;
+    }
+    atmoGeo.setAttribute('position', new THREE.BufferAttribute(atmoPos, 3));
+    atmoGeo.setAttribute('aSpeed', new THREE.BufferAttribute(atmoSpeed, 1));
+
+    const atmoMat = new THREE.ShaderMaterial({
+      uniforms: {
+        uTime: { value: 0 },
+        uAtmoColor: { value: hexToVec3(CONFIG.atmoColor) },
+        uAtmoSize: { value: CONFIG.atmoSize },
+        uAtmoSpeed: { value: CONFIG.atmoSpeed },
+        uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
+      },
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      vertexShader: `
+        uniform float uTime;
+        uniform float uAtmoSize;
+        uniform float uAtmoSpeed;
+        uniform float uPixelRatio;
+        attribute float aSpeed;
+        void main() {
+          vec3 pos = position;
+          pos.y += mod(uTime * aSpeed * uAtmoSpeed, 14.0) - 7.0;
+          vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+          gl_PointSize = uAtmoSize * uPixelRatio * aSpeed * (1.0 / -mv.z);
+          gl_Position = projectionMatrix * mv;
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uAtmoColor;
+        void main() {
+          float d = length(gl_PointCoord - 0.5) * 2.0;
+          if (d > 1.0) discard;
+          gl_FragColor = vec4(uAtmoColor, (1.0 - d) * 0.16);
+        }
+      `
+    });
+
+    const atmoPoints = new THREE.Points(atmoGeo, atmoMat);
+    scene.add(atmoPoints);
+
+    // Mouse Tracking in World Space
+    const clock = new THREE.Clock();
+    let pointer = { x: 0, y: 0 };
+    let hasPointer = false;
+
+    function updatePointerFromCoords(cx, cy) {
+      pointer.x = (cx / window.innerWidth) * 2 - 1;
+      pointer.y = -(cy / window.innerHeight) * 2 + 1;
+      hasPointer = true;
+    }
+
+    window.addEventListener('pointermove', (e) => {
+      updatePointerFromCoords(e.clientX, e.clientY);
+    });
+
+    // Parent page can forward pointer events smoothly
+    window.addEventListener('message', (e) => {
+      if (!e.data || typeof e.data !== 'object') return;
+      if (e.data.type === 'POINTER_MOVE') {
+        pointer.x = e.data.x;
+        pointer.y = e.data.y;
+        hasPointer = true;
+      }
+    });
+
+    let fadeIn = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      fadeIn = Math.min(fadeIn + 0.02, 1);
+
+      uniforms.uTime.value = t;
+      atmoMat.uniforms.uTime.value = t;
+      uniforms.uOpacity.value = CONFIG.opacity * fadeIn;
+
+      // Gentle continuous rotation
+      group.rotation.y += CONFIG.spin * 0.01;
+      group.rotation.x = Math.sin(t * 0.2) * 0.04;
+
+      // Project pointer into World Space on the Z=0 plane
+      if (hasPointer) {
+        const ray = new THREE.Raycaster();
+        ray.setFromCamera(new THREE.Vector2(pointer.x, pointer.y), camera);
+        const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+        const hit = new THREE.Vector3();
+        ray.ray.intersectPlane(plane, hit);
+        if (hit) {
+          uniforms.uRepelPos.value.copy(hit);
+        }
+      }
+
+      // Parallax camera movement
+      camera.position.x += (pointer.x * CONFIG.parallax * 0.5 - camera.position.x) * 0.04;
+      camera.position.y += (pointer.y * CONFIG.parallax * 0.35 - camera.position.y) * 0.04;
+      camera.lookAt(0, 0, 0);
+
+      composer.render();
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

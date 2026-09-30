@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "hexabot": {
+      "url": "http://localhost:3005/api/mcp",
+      "type": "http",
+      "description": "Hexabot Agent Orchestration, Workflow Engine & Knowledge Management MCP Server"
+    }
+  }
+}

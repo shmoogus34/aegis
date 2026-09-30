@@ -1,0 +1,198 @@
+# 296Class1and2Sp2020
+**Course:** BUSN-296
+**Source File:** `296Class1and2Sp2020.pptx`
+**Extracted on:** 2026-09-30T04:43:04.527Z
+
+---
+
+ACCT 296 -- Legal Environment
+Claire La Roche 
+Grading – 4 tests (70%) and the final exam (30%)
+No cell phones or laptops
+Tips:
+Take notes on your handouts
+PPT will be posted on Canvas
+I will post a review before each test
+How do you succeed (do well) in this class?
+Show up
+Be prepared
+Participate
+FIRST AMENDMENT
+Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof; or abridging the freedom of speech, or the press; or the right of the people to peaceably assemble, and to petition the Government for a redress of grievances.  
+You should know the 5 rights guaranteed by the First Amendment.
+Is the phrase “separation of church and state” in the Constitution?
+No. Actually Thomas Jefferson used this phrase in a letter to the Danbury Baptists…15 years later.  
+style.visibility
+Masterpiece and the Red Hen
+https://www.supremecourt.gov/opinions/17pdf/16-111_j4el.pdf  
+Source: https://denvercatholic.org/precedent-setting-masterpiece-cake-shop-case-heard-supreme-court/
+Red Hen
+FREEDOM OF SPEECH
+What speech is not protected?
+Fighting words – that are true threats that incite imminent lawless action.
+Harassment – it must be “so severe, pervasive, and objectively offensive that it effectively bars the victim’s access to an educational opportunity or benefit.” Davis v. Monroe Co. 526 US 629, 633 (1999).
+Obscenity – Note: Curse words and foul gestures are protected speech and not considered to be obscenity.
+Defamation – false statements that harm a person’s reputation.  
+style.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibility
+WHY IS FREE SPEECH IMPORTANT ON CAMPUS?
+In the search for truth, we must be open-minded and support the free expression of ideas.
+Should you be able to stop a speaker because you do not like the message?
+Should you be able to stop a speaker because you are offended?
+What about Longwood?  www.thefire.org https://www.thefire.org/longwood-university-our-bias-incident-policy-is-limited-to-conduct-its-not-and-no-bias-issues-have-been-reported-they-have/
+SECOND AMENDMENT
+A well regulated Militia being necessary to the security for a free State, the right of the people to keep and bear arms shall not be infringed. 
+What is the purpose of the Second Amendment?  
+“When governments fear the people, there is liberty.  When the people fear the government, there is tyranny.” Thomas Jefferson
+Since the 1930’s fully automated weapons (i.e. machine guns that spray bullets and fire for as long as the shooter keeps pressing on the trigger) have been heavily regulated.
+style.visibilitystyle.visibility
+FOURTH AMENDMENT
+Search and Arrest Warrants
+The right of the people to be secure in their persons, houses, papers, and effects against unreasonable searches and seizures, shall not be violated, and no warrants shall issue but upon probable cause, supported by Oath or affirmation, and particularly describing the place to be searched, and the persons or things to be seized.
+Mapp v. Ohio (1961) – If the state illegally obtains evidence , then it will be excluded from trial.  Before Mapp, only evidence seized by the federal government was excluded.  In this case, local police entered Dolly Mapp’s house without a warrant and arrested her for possession of pornography.  The conviction was overturned because the police lacked a warrant.       
+INDIVIDUAL RIGHTS
+“Enumerated powers” – Any power not specifically granted to the federal government is a “reserved power” specifically granted to the states.
+To date, there have only been 27 amendments to the Constitution and only one has been repealed.  Can you name that Amendment? 
+18th (Prohibition) repealed by the 21st
+The Bill of Rights (1791) consists of how many amendments?
+10  
+style.visibilitystyle.visibility
+PASSING LEGISLATION UNDER ARTICLE 1
+Bills that are passed must be signed by the President. What is required to overrule a presidential veto?
+ 2/3’s of the Senate and House
+No Bill of Attainder or ex post facto law shall be passed.  Can you give me an example of an ex post facto law or a “Bill of Attainder”?
+“Bill of Attainder” – is a law that applies to named individuals or members of an easily ascertainable group in such a way as to inflict punishment without a trial.  
+style.visibilitystyle.visibility
+U.S. SENATE
+VP is the President of the Senate and only votes in a tie.
+Senate shall be composed of two Senators from each state, chosen by the Legislature thereof.   What??? 
+Reason:  Senators should vote their conscience and not be subject to vast amounts of lobbying from special interest groups.  The 17th A changed this. 
+How long is a Senator’s term of office?  
+6 years
+&gt;30 years old and a citizen for at least 9 years 
+style.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibility
+ATTENDANCE AND EXTRA CREDIT
+Extra Credit: 5 points will be added to 1 test score for memorizing and reciting the Preamble to the Constitution. Up to 3 students per class will have the opportunity to earn these extra points.  A sign-up sheet is attached to the roll sheet.
+To do well in this class, you need to attend class.
+Please sign the Roll Sheet.  
+Representing Longwood at an official event is an “excused absence”.
+Three Strikes/Final Average
+1 absence – no consequence
+2 absences -- no “extra-ordinary rounding”.
+3 absences – no rounding
+What is Law?
+Minimum standards by which we are to conduct ourselves
+Our system of law is based on the English Common Law -- case law developed based on local customs. Oldest cases date back to the 12th century. https://www.britannica.com/topic/common-law 
+Purpose: Order, Stability and Justice
+Major Sources of Law: Constitution, Statutes, Case Law, Administrative Regulations
+CONSTITUTION (1788)
+America is an idea -- https://www.youtube.com/watch?v=Tg3Xzh2cXD8
+Supreme law of the land
+4440 words long (4 pages)
+Created the structure of the government and the relationship of the government to the people.
+How many pages are in the IRS Code? 
+73,000!!!!! 
+How long is the ACA (Obama Care)?
+style.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibility
+ACA
+\
+906 pages – 20,000 pages of regulations!
+THREE BRANCHES OF GOVERNMENT
+What are the 3 branches of government?
+Legislative – enact laws
+Executive – enforce laws
+Judicial – interpret law
+style.visibilitystyle.visibilitystyle.visibility
+LEGISLATIVE BRANCH/CONGRESS
+Article 1, Section 1 – All legislative powers herein granted shall be vested in a Congress of the United States, which shall consist of a Senate and a House of Representatives.
+How often are members of Congress elected?  
+Two years  
+&gt;25 years old and a citizen for 7 years
+Congress has the power to tax, borrow money, regulate commerce, establish uniform laws of bankruptcies, to coin money, to issue patents and copyrights and to call forth the militia.  
+style.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibilitystyle.visibility
+Jurisdiction of Federal Courts
+Federal Question – Constitutional issue, US statute, US treaty
+U.S. is a party
+Diversity of citizenship – plaintiff and defendant are from different states and at least $75,000 in controversy.
+FIFTH AMENDMENT
+Right against self-incrimination.  You can’t be compelled to testify against yourself.  Miranda v. Arizona (1966) – Miranda was questioned by the police and confessed to rape and kidnapping without being informed of his 5th A rights.  The Supreme Court struck down his conviction.   
+Double jeopardy
+Takings Clause -- “nor be deprived of life, liberty, or property, without due process of law; nor shall private property be taken for public use without just compensation.”  Can the government take your home by eminent domain so it can be sold to a private company?
+Consider Kelo v. City of New London, http://www.youtube.com/watch?v=4N1svadJQ40
+style.visibility
+OTHER IMPORTANT AMENDMENTS
+Thirteenth (1865) – abolished slavery 
+Fourteenth – has a due process clause like the fourth amendment.  It says that the 4th A applies to actions taken by the states.
+Sixteenth (1913) – income tax
+Eighteenth (1919) prohibition
+Nineteenth (1920) women’s suffrage (vote)
+Twenty first (1933) repeal of prohibition 
+Twenty second(1951) – president is limited to two terms
+Twenty fourth (1964) – poll tax outlawed
+Twenty sixth (1971) 18 year olds may vote
+Twenty seventh (1992) Congressional raises
+Quasi Contract
+Quasi contract – is a legal fiction and will be applied to avoid unjust enrichment.
+Hypothetical: Suppose your neighbor enters into a contract to have her house painted while she is away on vacation.  By mistake the house painter shows up to your house and begins to prepare to paint.  You are very quiet and you allow him to completely paint you house.  Do you owe the house painter?
+What would happen if you don’t realize that he is painting your house, and he paints it pink…your least favorite color?
+Next Class – Valid Agreements and Capacity to Contract
+Read Leonard v. PepsiCo and Lucy v. Zehmer
+Contract Terms
+Executory – a contract has not been fully performed
+Executed – contract has been fully performed
+Void – without legal effect
+Voidable – may be voided at the option of one of the parties
+Bilateral or Unilateral?
+A contract is either a unilateral contract or a bilateral contract.
+A unilateral offer is accepted by performing an act.  Ex. Reward
+A bilateral contract is where a promise is exchanged for another promise.
+Formal or Informal?
+A formal contract -- contract under seal, a negotiable instrument or a contract recorded in court.
+Types of Contracts
+Express or Implied? 
+Express – a contract formed through language (either written or oral).  
+Implied – the terms are implied from the conduct of the parties.  For example, going to the doctor.
+Elements of Legally Enforceable Contracts
+Offer – expresses a willingness to enter into a contract
+Acceptance – mirrors the offer
+Consideration – the price paid for a promise
+Competent Parties – mentally competent and over 18
+Lawful Objective  -- illegal contracts are unenforceable
+Proper Form and the Statute of Frauds – Certain contracts (NOT ALL) must be in writing and signed by the person against whom enforcement is sought.
+Bill of Rights Continued
+VI – speedy and public trial, impartial jury, right to an attorney, and to confront witnesses.
+VII – Right of trial by jury
+VIII – prohibits excessive bail
+IX – The enumeration of rights shall not be construed to deny others.
+X – The power not delegated to the federal government are reserved to the states. 
+Preparation for Next Class
+Read over handouts.
+Suggested reading -- The Pocket Constitution. Remember:  Extra credit opportunity for memorizing and reciting the Preamble (p. 31). 
+Valid Agreements and we will discuss Capacity to Contract
+Read Leonard v. Pepsico https://en.wikipedia.org/wiki/Leonard_v._Pepsico,_Inc
+     https://www.youtube.com/watch?v=U_n5SNrMaL8
+Lucy v. Zehmer 
+     https://en.wikipedia.org/wiki/Lucy_v._Zehmer
+Virginia Courts
+STATUTES
+  Include bills passed by Congress, laws passed by state legislatures, and county and town ordinances.
+“Federal Supremacy” – If there is a conflict between a state and federal law, the federal law is supreme.
+Administrative Agencies 
+Legislative, Executive, and Judicial powers
+Wickard v. Filburn (New Deal wheat case) drastically increased regulatory powers https://en.wikipedia.org/wiki/Wickard_v._Filburn
+“Exhaustion doctrine” – In a dispute with an administrative agency, you must first exhaust your administrative remedies before having the dispute heard in a state or federal court.
+Case Law
+Our system of laws is based on the English Common Law.  The earliest recorded cases date to the 12th C.  
+Court decisions may become precedent to be followed in the future.  
+The rule that a case becomes precedent is called the doctrine of stare decisis  -- to stand by the decision. 
+OTHER SOURCES OF LAW
+Uniform state laws – UCC
+ Executive Orders – President or Governor  
+Ex. Gov. Northam 8 weeks paid parental leave (https://www.governor.virginia.gov/newsroom/all-releases/2018/june/headline-826875-en.html)
+https://www.nbcnews.com/politics/white-house/here-s-full-list-donald-trump-s-executive-orders-n720796
+ Treaties – A treaty sponsored by an international organization is known as a “convention”. 
+Terms
+Jurisdiction – power of a court to decide a matter
+In a civil case, the person suing is referred to as the “plaintiff”.  The person being sued is the “defendant”.
+Arbitration is an out of court method of resolving a dispute.  Advantages: Faster, cheaper, an expert may be the arbitrator.
+Federal Court System
+Source: www.uscourts.gov  Fun Facts: https://www.supremecourt.gov/about/faq_general.aspx

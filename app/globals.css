@@ -1,0 +1,301 @@
+@font-face {
+  font-family: 'Seramonde';
+  src: url('/fonts/Seramonde.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/Nexa-ExtraLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('/fonts/Nexa-Heavy.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --obsidian:       #070709;
+  --obsidian-50:    #1a1a22;
+  --obsidian-100:   #111116;
+  --obsidian-200:   #0d0d11;
+  --accent:         #7C6BF0;
+  --accent-light:   #9B8DF5;
+  --accent-glow:    #B4A5FF;
+  --accent-dim:     #5A4DC0;
+  --accent-muted:   #3D3580;
+  --cyan:           #4DD9E0;
+  --green:          #4ADE80;
+  --red:            #F87171;
+  --purple:         #C084FC;
+  --blue:           #60A5FA;
+}
+
+* {
+  box-sizing:  border-box;
+  margin:      0;
+  padding:     0;
+}
+
+html,
+body {
+  height:           100%;
+  background-color: var(--obsidian);
+  color:            #E0E0E8;
+  font-family:      'Nexa', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size:        13px;
+  line-height:      1.6;
+  overflow-x:       hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbars ──────────────────────────────────────── */
+::-webkit-scrollbar              { width: 4px; height: 4px; }
+::-webkit-scrollbar-track        { background: #0d0d11; }
+::-webkit-scrollbar-thumb        { background: #7C6BF040; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover  { background: #7C6BF0; }
+
+/* ── Selection ───────────────────────────────────────── */
+::selection {
+  background: #7C6BF030;
+  color:      #B4A5FF;
+}
+
+/* ── Ambient grid background ─────────────────────────── */
+.grid-floor {
+  background-image:
+    linear-gradient(rgba(124, 107, 240, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 107, 240, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center center;
+}
+
+/* ── Scanline overlay ────────────────────────────────── */
+.scanline::after {
+  content:    '';
+  position:   fixed;
+  inset:      0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  z-index: 9999;
+}
+
+/* ── Corner accent lines ─────────────────────────────── */
+.corner-tl::before,
+.corner-tr::after,
+.corner-bl::before,
+.corner-br::after {
+  content:  '';
+  position: absolute;
+  width:    12px;
+  height:   12px;
+}
+.corner-tl::before { top: 0;    left:  0;    border-top:    1px solid var(--accent); border-left:   1px solid var(--accent); }
+.corner-tr::after  { top: 0;    right: 0;    border-top:    1px solid var(--accent); border-right:  1px solid var(--accent); }
+.corner-bl::before { bottom: 0; left:  0;    border-bottom: 1px solid var(--accent); border-left:   1px solid var(--accent); }
+.corner-br::after  { bottom: 0; right: 0;    border-bottom: 1px solid var(--accent); border-right:  1px solid var(--accent); }
+
+/* ── HUD Card base ───────────────────────────────────── */
+.hud-card {
+  position:         relative;
+  background:       #0D0D1199;
+  border:           1px solid #2A252015;
+  border-radius:    2px;
+  backdrop-filter:  blur(8px);
+}
+
+.hud-card:hover {
+  border-color: #7C6BF030;
+}
+
+/* ── Amber glow text ─────────────────────────────────── */
+.text-glow {
+  text-shadow: 0 0 8px var(--accent-glow), 0 0 20px var(--accent)40;
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 8px var(--cyan), 0 0 20px #4DD9E040;
+}
+
+.text-glow-green {
+  text-shadow: 0 0 8px var(--green), 0 0 20px #4ADE8040;
+}
+
+/* ── Box glows ───────────────────────────────────────── */
+.glow-accent  { box-shadow: 0 0 12px #7C6BF030, inset 0 0 12px #7C6BF008; }
+.glow-cyan   { box-shadow: 0 0 12px #4DD9E030, inset 0 0 12px #4DD9E008; }
+.glow-green  { box-shadow: 0 0 12px #4ADE8030, inset 0 0 12px #4ADE8008; }
+.glow-red    { box-shadow: 0 0 12px #F8717130, inset 0 0 12px #F8717108; }
+
+/* ── Priority badge colors ───────────────────────────── */
+.badge-critical { background: #F8717115; color: #F87171; border: 1px solid #F8717130; }
+.badge-high     { background: #9B8DF515; color: #9B8DF5; border: 1px solid #9B8DF530; }
+.badge-medium   { background: #60A5FA15; color: #60A5FA; border: 1px solid #60A5FA30; }
+.badge-low      { background: #4ADE8015; color: #4ADE80; border: 1px solid #4ADE8030; }
+
+/* ── Tag badge ───────────────────────────────────────── */
+.tag-lockdown   { background: #F8717112; color: #F87171; border: 1px solid #F8717130; }
+.tag-discussion { background: #60A5FA12; color: #60A5FA; border: 1px solid #60A5FA30; }
+.tag-reading    { background: #4ADE8012; color: #4ADE80; border: 1px solid #4ADE8030; }
+.tag-problem    { background: #4DD9E012; color: #4DD9E0; border: 1px solid #4DD9E030; }
+
+/* ── Terminal text colors ────────────────────────────── */
+.log-canvas     { color: #4DD9E0; }
+.log-openrouter { color: #9B8DF5; }
+.log-calendar   { color: #C084FC; }
+.log-vault      { color: #4ADE80; }
+.log-system     { color: #8A7A6A; }
+
+/* ── Animated pulsing ring ───────────────────────────── */
+@keyframes ping-slow {
+  75%, 100% { transform: scale(1.8); opacity: 0; }
+}
+.ping-slow { animation: ping-slow 2s cubic-bezier(0,0,0.2,1) infinite; }
+
+/* ── Now badge pulse ─────────────────────────────────── */
+@keyframes now-pulse {
+  0%, 100% { box-shadow: 0 0 4px #9B8DF5, 0 0 8px #9B8DF560; }
+  50%       { box-shadow: 0 0 12px #9B8DF5, 0 0 24px #9B8DF580; }
+}
+.now-badge { animation: now-pulse 1.5s ease-in-out infinite; }
+
+/* ── Agent active glow pulse ─────────────────────────── */
+@keyframes active-glow {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1;   }
+}
+.active-glow { animation: active-glow 1s ease-in-out infinite; }
+
+/* ── Countdown critical indicator ────────────────────── */
+.crit-blink { color: #F87171; font-weight: bold; }
+
+/* ── Global transition ───────────────────────────────── */
+button, a { transition: all 0.15s ease; }
+
+/* ── Liquid Glass Design System (liquidglassdesign.com) ── */
+.liquid-glass {
+  position: relative;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 60%, rgba(10, 10, 16, 0.65) 100%), rgba(12, 12, 18, 0.7);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(255, 255, 255, 0.3);
+  border-bottom-color: rgba(0, 0, 0, 0.55);
+  box-shadow: 
+    0 28px 56px -14px rgba(0, 0, 0, 0.8),
+    0 14px 28px -8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 24px 0 rgba(124, 107, 240, 0.06);
+}
+
+.liquid-glass-card {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(100% 100% at 50% 0%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.015) 75%), rgba(11, 11, 17, 0.75);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.26);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 
+    0 32px 64px -16px rgba(0, 0, 0, 0.85),
+    0 16px 32px -8px rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 32px 0 rgba(124, 107, 240, 0.06);
+}
+
+.liquid-glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.liquid-glass-pill {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-top-color: rgba(255, 255, 255, 0.35);
+  border-bottom-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 
+    0 8px 20px -6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-pill:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  border-top-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 
+    0 12px 28px -4px rgba(124, 107, 240, 0.28),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.48);
+  transform: translateY(-1px);
+}
+
+.liquid-glass-input {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.2);
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.liquid-glass-input:focus {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: #7C6BF0;
+  border-top-color: #9B8DF5;
+  box-shadow: 
+    0 0 16px rgba(124, 107, 240, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.liquid-glass-btn {
+  position: relative;
+  background: linear-gradient(180deg, #7C6BF0 0%, #6351DE 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    0 12px 28px -6px rgba(124, 107, 240, 0.45),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.liquid-glass-btn:hover {
+  background: linear-gradient(180deg, #8B7BF5 0%, #6E5DE6 100%);
+  border-top-color: rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    0 16px 32px -4px rgba(124, 107, 240, 0.6),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
+}
+

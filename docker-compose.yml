@@ -1,0 +1,28 @@
+services:
+  aegis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aegis-runner
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - HOSTNAME=0.0.0.0
+    volumes:
+      - ./data:/app/data
+      - ./vault:/app/vault
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3001/api/canvas?action=courses || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+networks:
+  default:
+    name: aegis-network
